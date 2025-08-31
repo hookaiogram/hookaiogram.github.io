@@ -10,11 +10,11 @@ from handlers.user_group import user_group_router
 from aiogram import Bot, Dispatcher
 
 ADMIN_ID = "2031703859"
-BOT_TOKEN = os.getenv("5865582967:AAFNrA6pmu3clrIQQ1gfGf0vWabukSGyQvs")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = int(os.getenv("PORT", 8080))
 WEBHOOK_PATH = "/webhook"
-BASE_WEBHOOK_URL = os.getenv("https://hookaiogram-github-io.onrender.com")
+BASE_WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 # Функция для установки командного меню для бота
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -80,6 +80,7 @@ def main() -> None:
 if __name__ == "__main__":
     app = (main())
     web.run_app(app, host=WEB_SERVER_HOST, port=WEB_SERVER_PORT)
+
 
 
 
