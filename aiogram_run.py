@@ -1,5 +1,4 @@
 import asyncio
-import logging
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from aiohttp import web
 from middlewares.db import DataBaseSession
@@ -51,7 +50,7 @@ async def on_shutdown() -> None:
 # Основная функция, которая запускает приложение
 
 
-async def main() -> None:
+def main() -> None:
     # Подключаем маршрутизатор (роутер) для обработки сообщений
     dp.include_router(admin_router)
     dp.include_router(user_group_router)
@@ -71,14 +70,15 @@ async def main() -> None:
     setup_application(app, dp, bot=bot)
 # Запускаем веб-сервер на указанном хосте и порте
 
-    await dp.start_polling(bot)
+    return app
 # Запускаем веб-сервер на указанном хосте и порте
     
 
 
 # Точка входа в программу
 if __name__ == "__main__":
-    app = asyncio.run(main())
+    app = (main())
     web.run_app(app, host="0.0.0.0", port=10000)
+
 
 
