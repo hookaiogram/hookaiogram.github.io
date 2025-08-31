@@ -12,7 +12,7 @@ from aiogram import Bot, Dispatcher
 ADMIN_ID = "2031703859"
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEB_SERVER_HOST = "0.0.0.0"
-WEB_SERVER_PORT = int(os.getenv("PORT", 8080))
+WEB_SERVER_PORT = int(os.getenv("PORT", 18013))
 WEBHOOK_PATH = "/webhook"
 BASE_WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 # Функция для установки командного меню для бота
@@ -74,12 +74,14 @@ def main() -> None:
     return app
 # Запускаем веб-сервер на указанном хосте и порте
     
-
+async def set_webhook():
+    await bot.set_webhook("https://hookaiogram-github-io.onrender.com")
 
 # Точка входа в программу
 if __name__ == "__main__":
     app = (main())
     web.run_app(app, host=WEB_SERVER_HOST, port=WEB_SERVER_PORT)
+
 
 
 
