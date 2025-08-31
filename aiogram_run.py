@@ -1,4 +1,4 @@
-import asynci
+import asyncio
 import logging
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from aiohttp import web
@@ -80,4 +80,5 @@ async def main() -> None:
 if __name__ == "__main__":
     app = asyncio.run(main())
     web.run_app(app, host="0.0.0.0", port=10000)
+
 
