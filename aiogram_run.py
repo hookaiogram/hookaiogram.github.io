@@ -18,7 +18,7 @@ BASE_WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 # Функция для установки командного меню для бота
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
-
+bot.my_admin_list = [2031703859] 
 
 async def set_commands():
     # Создаем список команд, которые будут доступны пользователям
@@ -81,6 +81,7 @@ async def set_webhook():
 if __name__ == "__main__":
     app = (main())
     web.run_app(app, host=WEB_SERVER_HOST, port=WEB_SERVER_PORT)
+
 
 
 
