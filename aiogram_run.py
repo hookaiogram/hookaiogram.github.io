@@ -12,7 +12,7 @@ from aiogram import Bot, Dispatcher
 ADMIN_ID = "2031703859"
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEB_SERVER_HOST = "0.0.0.0"
-WEB_SERVER_PORT = int(os.getenv("PORT", 18013))
+WEB_SERVER_PORT = int(os.getenv("PORT", 10000))
 WEBHOOK_PATH = "/webhook"
 BASE_WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 # Функция для установки командного меню для бота
@@ -81,6 +81,7 @@ async def set_webhook():
 if __name__ == "__main__":
     app = (main())
     web.run_app(app, host=WEB_SERVER_HOST, port=WEB_SERVER_PORT)
+
 
 
 
