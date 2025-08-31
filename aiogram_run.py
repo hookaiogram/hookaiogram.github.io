@@ -1,3 +1,4 @@
+import os
 import asyncio
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from aiohttp import web
@@ -7,15 +8,15 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 from handlers.admin_private import admin_router
 from handlers.user_group import user_group_router
 from aiogram import Bot, Dispatcher
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
 
 ADMIN_ID = "2031703859"
-BOT_TOKEN = "5865582967:AAFNrA6pmu3clrIQQ1gfGf0vWabukSGyQvs"
+BOT_TOKEN = os.getenv("5865582967:AAFNrA6pmu3clrIQQ1gfGf0vWabukSGyQvs")
+WEB_SERVER_HOST = "0.0.0.0"
+WEB_SERVER_PORT = int(os.getenv("PORT", 8080))
 WEBHOOK_PATH = "/webhook"
-BASE_URL = f"https://hookaiogram-github-io.onrender.com{WEBHOOK_PATH}"
+BASE_WEBHOOK_URL = os.getenv("https://hookaiogram-github-io.onrender.com")
 # Функция для установки командного меню для бота
-bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
@@ -34,7 +35,7 @@ async def on_startup() -> None:
 # Устанавливаем командное меню
     await set_commands()
 # Устанавливаем вебхук для приема сообщений через заданный URL
-    await bot.set_webhook(f"{BASE_URL}{WEBHOOK_PATH}")
+    await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}")
 # Отправляем сообщение администратору о том, что бот был запущен
     await bot.send_message(chat_id=ADMIN_ID, text='Бот запущен!')
 # Функция, которая будет вызвана при остановке бота
@@ -78,7 +79,8 @@ def main() -> None:
 # Точка входа в программу
 if __name__ == "__main__":
     app = (main())
-    web.run_app(app, host="0.0.0.0", port=10000)
+    web.run_app(app, host=WEB_SERVER_HOST, port=WEB_SERVER_PORT)
+
 
 
 
